@@ -1,3 +1,22 @@
 #Launching instance
 aws ec2 run-instances --image-id ami-0533f2ba8a1995cf9 --instance-type t2.micro --count=1   --security-group-ids  sg-0f7ebdf82d74664d2 --key-name mykey
 
+#Create ebs volume
+aws ec2 create-volume --availability-zone ap-south-1b --size 1 
+
+# Attach ebs volume
+aws ec2 attach-volume --volume-id vol-074e31ac6d9fe58e8 --instance-id i-0637ffb97ef7e8514 --device=/dev/sdf
+
+#Create partition, format & mount (Linux)      OR    IF OS IS WINDOWS WE WILL USE PUTTY TO LOGIN TO OS
+ ssh <ip> -i myclikey.pem -l ec2-user sudo fdisk  /dev/xvdf
+ ssh <ip> -i myclikey.pem -l ec2-user sudo mkfs.ext4 /dev/xvdf1
+ ssh <ip> -i myclikey.pem -l ec2-user sudo mount  /dev/xvdf1   /var/www/html 
+
+#Create s3 Bucket 
+aws s3api  create-bucket  --bucket adtsk-5  --region us-east-1
+
+# Create CloudFront Distribution
+aws cloudfront create-distribution  --origin-domain-name  adtsk-5.s3.amazonaws.co
+
+#Get url & use it.
+Take url and use it 
