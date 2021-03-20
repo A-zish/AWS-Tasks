@@ -1,0 +1,6 @@
+# Create Key Pair
+aws ec2  create-key-pair --key-name mykey
+# Create security group
+aws ec2 create-security-group --group-name sgtask5 --description "My security group"
+# ami id
+https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:
