@@ -1,6 +1,34 @@
-# Create Key Pair
-aws ec2  create-key-pair --key-name mykey
-# Create security group
-aws ec2 create-security-group --group-name sgtask5 --description "My security group"
-# ami id
-https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:
+#Downloading :
+- download & install AWS cli client software .
+- aws --version (for checking)
+
+#Configuring Aws cli :
+- aws configure 
+(enter the Access key, Secret Acess Key, Region and the Output Format (default is JSON format)) 
+
+#Creating key pair:
+- aws ec2 create-key-pair --key-name nameofkey
+
+#Creating security group:
+- aws ec2 create-security-group --group-name awscli --description "descriptionwewanttogive" --vpc-id vpcid
+
+#Defining protocol :
+- aws ec2 authorize-security-group-ingress -- group-id sg-11826ba4c5914fdeb --group-name awscli --protocol tcp --port 22 --cidr 0.0.0.0/0
+
+#launching instance:
+- aws ec2 run-instances --image-id https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard: --instance-type t2.micro --count=1 --subnet-id subnet-1be19d30 --security-group-ids sg-11826ba4c5914fdeb --key-name keyforcli
+
+#Creating volume:
+- aws ec2 create-volume --availability-zone us-east-1b --size 1
+
+#Attaching volume:
+- aws ec2 attach-volume --volume-id vol-09866940fb6a5eb52 --instance-id i-07c80aac43edf812f --device=/dev/sdf
+
+Login:
+- Next you can login into it via ssh protocol
+#Partition:
+- Then create partition -> format it -> mount it -> Use .
+
+
+
+
